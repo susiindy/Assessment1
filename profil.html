@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil dan Peminjaman Buku</title>
+</head>
+<body>
+    <div id="profil">
+        <img src="susi.jpg" alt="gambar" width="60">
+        <h2>Susi indrayani oktavia gulo</h2>
+        <p>NIM: 607012390005</p>
+        <p>Kelas: D3SI-46-01</p>
+    </div>
+    <div id="peminjaman">
+        <input type="number" id="jumlah" placeholder="Jumlah Buku">
+        <select id="pilihan">
+            <option value="sherlock">Sherlock</option>
+            <option value="lupin">Lupin</option>
+            <option value="aladin">Aladin</option>
+        </select>
+        <button onclick="cekPeminjaman()">Pinjam Buku</button>
+    </div>
+
+    <script>
+        let buku = [
+            {"nama": "sherlock", "jumlah":2},
+            {"nama": "lupin", "jumlah":2},
+            {"nama": "aladin", "jumlah":2}
+        ];
+
+        function cekPeminjaman() {
+            let jumlah = parseInt(document.getElementById("jumlah").value);
+            let pilihan = document.getElementById("pilihan").value;
+
+            if (isNaN(jumlah) || jumlah === 0) {
+                alert("Masukkan jumlah buku yang valid.");
+            } else {
+                let bukuDitemukan = false;
+                for (let i = 0; i < buku.length; i++) {
+                    if (buku[i].nama === pilihan) {
+                        bukuDitemukan = true;
+                        if (jumlah > buku[i].jumlah) {
+                            alert("Jumlah buku tidak tersedia.");
+                        } else {
+                            alert("Silahkan ambil buku Anda.");
+                        }
+                        break;
+                    }
+                }
+                if (!bukuDitemukan) {
+                    alert("Buku tidak ditemukan.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
